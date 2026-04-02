@@ -1,0 +1,201 @@
+/* ── Backdrop ───────────────────────────────────────────────────────────────── */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: backdrop-in 0.25s ease forwards;
+}
+
+@keyframes backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Modal box ──────────────────────────────────────────────────────────────── */
+.modal {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 40px 36px 32px;
+  max-width: 430px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-modal);
+  animation: modal-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes modal-in {
+  from { opacity: 0; transform: scale(0.78) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ── Confetti ───────────────────────────────────────────────────────────────── */
+.confetti-wrap {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.confetti-dot {
+  position: absolute;
+  top: -10px;
+  border-radius: 50%;
+  animation: confetti-fall 1.6s ease-out forwards;
+}
+
+@keyframes confetti-fall {
+  0%   { opacity: 1; transform: translateY(-10px) rotate(0deg) scale(1); }
+  80%  { opacity: 0.6; }
+  100% { opacity: 0; transform: translateY(320px) rotate(540deg) scale(0.6); }
+}
+
+/* ── Modal content ──────────────────────────────────────────────────────────── */
+.modal-emoji {
+  display: block;
+  font-size: 4rem;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+  animation: emoji-bounce 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.15s both;
+}
+
+@keyframes emoji-bounce {
+  from { transform: scale(0) rotate(-30deg); }
+  to   { transform: scale(1) rotate(0deg); }
+}
+
+.modal-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.modal-title.win  { color: var(--accent-win); }
+.modal-title.lose { color: var(--accent-loss); }
+
+.modal-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.modal-word {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 12px 24px;
+  margin: 12px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.modal-word span {
+  color: var(--accent-primary);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+}
+
+.modal-streak {
+  font-size: 0.88rem;
+  color: var(--accent-win);
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.modal-encouragement {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 1;
+  font-style: italic;
+}
+
+/* ── Buttons ────────────────────────────────────────────────────────────────── */
+.modal-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-primary {
+  background: var(--accent-primary);
+  color: #000;
+  border: none;
+  border-radius: var(--radius-btn);
+  padding: 14px 28px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.92rem;
+  font-weight: 600;
+  width: 100%;
+  transition: all var(--transition);
+  letter-spacing: 0.03em;
+}
+
+.btn-primary.btn-win {
+  background: var(--accent-win);
+}
+
+.btn-primary:hover {
+  opacity: 0.88;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 229, 255, 0.3);
+}
+
+.btn-primary.btn-win:hover {
+  box-shadow: 0 6px 20px rgba(0, 255, 178, 0.3);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  border-radius: var(--radius-btn);
+  padding: 13px 28px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  width: 100%;
+  transition: all var(--transition);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+/* ── Mobile ─────────────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .modal {
+    padding: 28px 18px 24px;
+    border-radius: 16px;
+  }
+
+  .modal-title {
+    font-size: 1.6rem;
+  }
+
+  .modal-emoji {
+    font-size: 3rem;
+  }
+}

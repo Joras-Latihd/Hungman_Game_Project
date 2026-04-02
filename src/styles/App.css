@@ -1,0 +1,95 @@
+/* ── App shell ──────────────────────────────────────────────────────────────── */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+  transition: background var(--transition);
+}
+
+/* ── Game layout grid ───────────────────────────────────────────────────────── */
+.game-layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1.45fr;
+  gap: 24px;
+  padding: 28px 32px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ── Panels ─────────────────────────────────────────────────────────────────── */
+.left-panel,
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ── New game button ────────────────────────────────────────────────────────── */
+.btn-new-game {
+  align-self: flex-start;
+  background: transparent;
+  border: 1px solid var(--accent-primary);
+  color: var(--accent-primary);
+  border-radius: var(--radius-btn);
+  padding: 10px 22px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition: all var(--transition);
+}
+
+.btn-new-game:hover {
+  background: rgba(0, 229, 255, 0.08);
+  box-shadow: var(--shadow-glow);
+}
+
+/* ── Footer ─────────────────────────────────────────────────────────────────── */
+.app-footer {
+  text-align: center;
+  padding: 16px 20px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  transition: background var(--transition), color var(--transition);
+  letter-spacing: 0.03em;
+}
+
+.app-footer a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+
+.app-footer a:hover {
+  opacity: 0.75;
+  text-decoration: underline;
+}
+
+/* ── Responsive: tablet ─────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .game-layout {
+    grid-template-columns: 1fr;
+    padding: 20px 18px;
+    gap: 16px;
+  }
+
+  .left-panel {
+    order: 2;
+  }
+
+  .right-panel {
+    order: 1;
+  }
+}
+
+/* ── Responsive: mobile ─────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .game-layout {
+    padding: 14px 12px;
+    gap: 12px;
+  }
+}

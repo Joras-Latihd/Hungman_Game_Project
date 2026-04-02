@@ -1,0 +1,50 @@
+/* ── Dark theme (default) ──────────────────────────────────────────────────── */
+:root,
+[data-theme="dark"] {
+  --bg-primary:     #0d0f14;
+  --bg-surface:     #161a23;
+  --bg-elevated:    #1e2433;
+  --bg-elevated2:   #252d3d;
+
+  --accent-primary: #00e5ff;
+  --accent-win:     #00ffb2;
+  --accent-loss:    #ff4d6d;
+  --accent-warn:    #ffd166;
+
+  --text-primary:   #f0f4ff;
+  --text-muted:     #6b7a99;
+  --text-subtle:    #3e4a6a;
+
+  --border-subtle:  #2a3148;
+  --border-accent:  rgba(0, 229, 255, 0.25);
+
+  --shadow-glow:    0 0 24px rgba(0, 229, 255, 0.12);
+  --shadow-card:    0 4px 24px rgba(0, 0, 0, 0.35);
+  --shadow-modal:   0 8px 48px rgba(0, 0, 0, 0.6);
+
+  --radius-card:    16px;
+  --radius-btn:     10px;
+  --radius-key:     8px;
+  --radius-badge:   20px;
+
+  --transition:     0.3s ease;
+}
+
+/* ── Light theme override ──────────────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg-primary:     #f4f6fb;
+  --bg-surface:     #ffffff;
+  --bg-elevated:    #edf0f7;
+  --bg-elevated2:   #e2e7f2;
+
+  --text-primary:   #0d0f14;
+  --text-muted:     #6b7380;
+  --text-subtle:    #b0b8cc;
+
+  --border-subtle:  #c8d0e0;
+  --border-accent:  rgba(0, 150, 200, 0.3);
+
+  --shadow-glow:    0 0 24px rgba(0, 150, 200, 0.08);
+  --shadow-card:    0 2px 16px rgba(0, 0, 0, 0.08);
+  --shadow-modal:   0 8px 48px rgba(0, 0, 0, 0.2);
+}

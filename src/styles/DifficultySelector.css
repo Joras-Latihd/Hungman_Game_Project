@@ -1,0 +1,81 @@
+/* ── Difficulty selector card ───────────────────────────────────────────────── */
+.difficulty-selector {
+  padding: 18px 20px;
+}
+
+/* ── Button group ───────────────────────────────────────────────────────────── */
+.diff-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* ── Individual difficulty button ───────────────────────────────────────────── */
+.btn-diff {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 12px 8px;
+  border-radius: var(--radius-btn);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  font-family: 'DM Mono', monospace;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-diff:hover {
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+  background: var(--bg-elevated2);
+}
+
+/* ── Active states per difficulty ───────────────────────────────────────────── */
+.btn-diff.easy.active {
+  border-color: var(--accent-win);
+  color: var(--accent-win);
+  background: rgba(0, 255, 178, 0.07);
+  box-shadow: 0 0 16px rgba(0, 255, 178, 0.12);
+}
+
+.btn-diff.medium.active {
+  border-color: var(--accent-warn);
+  color: var(--accent-warn);
+  background: rgba(255, 209, 102, 0.07);
+  box-shadow: 0 0 16px rgba(255, 209, 102, 0.12);
+}
+
+.btn-diff.hard.active {
+  border-color: var(--accent-loss);
+  color: var(--accent-loss);
+  background: rgba(255, 77, 109, 0.07);
+  box-shadow: 0 0 16px rgba(255, 77, 109, 0.12);
+}
+
+/* ── Text layers ────────────────────────────────────────────────────────────── */
+.diff-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.diff-desc {
+  font-size: 0.65rem;
+  opacity: 0.75;
+  letter-spacing: 0.02em;
+}
+
+.diff-attempts {
+  font-size: 0.7rem;
+  opacity: 0.6;
+  letter-spacing: 0.02em;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────────── */
+@media (max-width: 360px) {
+  .diff-buttons {
+    flex-direction: column;
+  }
+}
