@@ -4,11 +4,23 @@
   display: flex;
   flex-direction: column;
   gap: 7px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
+  background: rgba(12, 10, 3, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-sharp);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
-  transition: background var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.keyboard::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(245, 158, 11, 0.7) 50%, transparent 100%);
+  pointer-events: none;
 }
 
 /* ── Key row ────────────────────────────────────────────────────────────────── */
@@ -24,61 +36,77 @@
   width: 44px;
   height: 44px;
   border-radius: var(--radius-key);
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-elevated);
-  color: var(--text-primary);
-  font-family: 'DM Mono', monospace;
-  font-size: 0.82rem;
-  font-weight: 500;
+  /* Sharp amber border — always visible */
+  border: 1px solid rgba(245, 158, 11, 0.28);
+  background: linear-gradient(160deg, #1e1808 0%, #141008 100%);
+  color: #fef3c7;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.15s ease;
-  letter-spacing: 0.02em;
+  transition: all 0.13s ease;
+  letter-spacing: 0.03em;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  /* 3D depth */
+  box-shadow:
+    0 4px 0 rgba(0, 0, 0, 0.6),
+    0 1px 0 rgba(245, 158, 11, 0.15) inset,
+    0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .key-btn:hover:not(:disabled) {
   border-color: var(--accent-primary);
   color: var(--accent-primary);
-  background: rgba(0, 229, 255, 0.06);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 229, 255, 0.15);
+  background: linear-gradient(160deg, #282010 0%, #1c1608 100%);
+  transform: translateY(-3px);
+  box-shadow:
+    0 7px 0 rgba(0, 0, 0, 0.5),
+    0 0 18px rgba(245, 158, 11, 0.3),
+    0 0 0 1px rgba(245, 158, 11, 0.5);
+  text-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
 }
 
+/* 3D press */
 .key-btn:active:not(:disabled) {
-  transform: scale(0.92);
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5), 0 0 8px rgba(245, 158, 11, 0.15);
 }
 
 /* ── Correct state ──────────────────────────────────────────────────────────── */
 .key-btn.correct {
-  background: rgba(0, 255, 178, 0.15);
+  background: linear-gradient(160deg, rgba(16, 185, 129, 0.22) 0%, rgba(16, 185, 129, 0.1) 100%);
   border-color: var(--accent-win);
   color: var(--accent-win);
   cursor: default;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.28), 0 3px 0 rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
 }
 
 /* ── Wrong state ────────────────────────────────────────────────────────────── */
 .key-btn.wrong {
-  background: rgba(255, 77, 109, 0.08);
-  border-color: rgba(255, 77, 109, 0.25);
-  color: var(--accent-loss);
+  background: rgba(12, 10, 3, 0.5);
+  border-color: rgba(239, 68, 68, 0.2);
+  color: rgba(239, 68, 68, 0.45);
   text-decoration: line-through;
   cursor: default;
-  opacity: 0.65;
+  opacity: 0.5;
+  box-shadow: none;
 }
 
-/* ── Disabled (game ended) ──────────────────────────────────────────────────── */
+/* ── Disabled ───────────────────────────────────────────────────────────────── */
 .key-btn:disabled:not(.correct):not(.wrong) {
-  opacity: 0.35;
+  opacity: 0.25;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
-/* ── Shake animation on wrong guess ────────────────────────────────────────── */
+/* ── Shake ──────────────────────────────────────────────────────────────────── */
 .key-btn.shake-key {
-  animation: key-shake 0.35s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+  animation: key-shake 0.32s cubic-bezier(0.36, 0.07, 0.19, 0.97);
 }
 
 @keyframes key-shake {
@@ -92,18 +120,54 @@
 /* ── Responsive ─────────────────────────────────────────────────────────────── */
 @media (max-width: 480px) {
   .key-btn {
-    width: 35px;
-    height: 35px;
-    font-size: 0.72rem;
-    border-radius: 6px;
+    width: 34px;
+    height: 34px;
+    font-size: 0.75rem;
+    border-radius: 7px;
   }
+  .key-row { gap: 4px; }
+  .keyboard { padding: 12px 10px; gap: 5px; }
+}
 
-  .key-row {
-    gap: 4px;
-  }
+/* ── Light mode ─────────────────────────────────────────────────────────────── */
+[data-theme="light"] .keyboard {
+  background: rgba(248, 248, 248, 0.98);
+  border-color: rgba(0,0,0,0.14);
+}
 
-  .keyboard {
-    padding: 12px 10px;
-    gap: 5px;
-  }
+[data-theme="light"] .keyboard::before {
+  background: linear-gradient(90deg, transparent 0%, rgba(180, 83, 9, 0.5) 50%, transparent 100%);
+}
+
+[data-theme="light"] .key-btn {
+  background: linear-gradient(160deg, #ffffff 0%, #f0f0f0 100%);
+  border-color: rgba(0,0,0,0.18);
+  color: #111111;
+  box-shadow: var(--shadow-key);
+}
+
+[data-theme="light"] .key-btn:hover:not(:disabled) {
+  background: linear-gradient(160deg, #fff8ee 0%, #fef3c7 100%);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  box-shadow: var(--shadow-key-hover);
+  text-shadow: none;
+}
+
+[data-theme="light"] .key-btn:active:not(:disabled) {
+  box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
+
+[data-theme="light"] .key-btn.correct {
+  background: linear-gradient(160deg, #d1fae5 0%, #a7f3d0 100%);
+  border-color: var(--accent-win);
+  color: var(--accent-win);
+  box-shadow: 0 0 12px rgba(5, 150, 105, 0.2), 0 3px 0 rgba(0,0,0,0.12);
+  text-shadow: none;
+}
+
+[data-theme="light"] .key-btn.wrong {
+  background: #f9f9f9;
+  border-color: rgba(220, 38, 38, 0.25);
+  color: rgba(220, 38, 38, 0.5);
 }

@@ -9,7 +9,7 @@ export default function Header({ stats, theme, toggleTheme }) {
     <header className="header">
       <div className="header-logo">
         <span className="logo-dot" aria-hidden="true">⚫</span>
-        <span className="logo-text">HANGMAN</span>
+        <span className="logo-text">HANGMAN Game</span>
       </div>
 
       <div className="header-center" aria-label="Quick stats">

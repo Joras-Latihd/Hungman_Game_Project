@@ -12,8 +12,8 @@
   flex: 1;
   display: grid;
   grid-template-columns: 1fr 1.45fr;
-  gap: 24px;
-  padding: 28px 32px;
+  gap: 20px;
+  padding: 24px 28px;
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
@@ -24,72 +24,265 @@
 .right-panel {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
 }
 
 /* ── New game button ────────────────────────────────────────────────────────── */
 .btn-new-game {
   align-self: flex-start;
-  background: transparent;
-  border: 1px solid var(--accent-primary);
+  background: linear-gradient(160deg, #1e1808 0%, #141008 100%);
+  border: 1px solid var(--border-sharp);
   color: var(--accent-primary);
   border-radius: var(--radius-btn);
   padding: 10px 22px;
-  font-size: 0.82rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
   transition: all var(--transition);
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
 }
 
 .btn-new-game:hover {
-  background: rgba(0, 229, 255, 0.08);
-  box-shadow: var(--shadow-glow);
+  border-color: var(--accent-primary);
+  color: #0a0600;
+  background: var(--grad-amber);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.4), var(--shadow-glow);
 }
 
-/* ── Footer ─────────────────────────────────────────────────────────────────── */
+.btn-new-game:active {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.4);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════════════════════════════════════ */
 .app-footer {
-  text-align: center;
-  padding: 16px 20px;
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  border-top: 1px solid var(--border-subtle);
-  background: var(--bg-surface);
-  transition: background var(--transition), color var(--transition);
-  letter-spacing: 0.03em;
+  border-top: 1px solid var(--border-sharp);
+  background: rgba(6, 4, 1, 0.97);
+  position: relative;
+  transition: background var(--transition), border-color var(--transition);
 }
 
-.app-footer a {
+/* Top amber shimmer */
+.app-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+}
+
+/* ── Inner grid — bio left, links right ─────────────────────────────────────── */
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 28px 20px;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 20px 40px;
+  align-items: start;
+}
+
+/* ── Developer bio (top-left) ───────────────────────────────────────────────── */
+.footer-dev {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
   color: var(--accent-primary);
-  text-decoration: none;
-  transition: opacity var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.app-footer a:hover {
-  opacity: 0.75;
-  text-decoration: underline;
+.footer-label::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 12px;
+  background: var(--accent-primary);
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
+  flex-shrink: 0;
+}
+
+.footer-bio {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 420px;
+}
+
+/* ── Social links (top-right) ───────────────────────────────────────────────── */
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-sharp);
+  background: linear-gradient(160deg, #1e1808 0%, #141008 100%);
+  color: var(--text-muted);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: all var(--transition);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+}
+
+.footer-link:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background: rgba(245, 158, 11, 0.07);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3), 0 0 14px rgba(245, 158, 11, 0.15);
+}
+
+.footer-link:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.footer-link-icon {
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  line-height: 1;
+  opacity: 0.85;
+}
+
+/* ── Copyright bar (bottom, full-width) ─────────────────────────────────────── */
+.footer-copy {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  flex-wrap: wrap;
+}
+
+.footer-dot {
+  color: var(--accent-primary);
+  opacity: 0.5;
 }
 
 /* ── Responsive: tablet ─────────────────────────────────────────────────────── */
 @media (max-width: 860px) {
   .game-layout {
     grid-template-columns: 1fr;
-    padding: 20px 18px;
+    padding: 18px 16px;
+    gap: 14px;
+  }
+
+  .left-panel  { order: 2; }
+  .right-panel { order: 1; }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+    padding: 22px 18px 16px;
     gap: 16px;
   }
 
-  .left-panel {
-    order: 2;
-  }
-
-  .right-panel {
-    order: 1;
+  .footer-links {
+    justify-content: flex-start;
   }
 }
 
 /* ── Responsive: mobile ─────────────────────────────────────────────────────── */
 @media (max-width: 480px) {
   .game-layout {
-    padding: 14px 12px;
+    padding: 12px 10px;
     gap: 12px;
   }
+
+  .footer-inner {
+    padding: 18px 14px 14px;
+    gap: 14px;
+  }
+
+  .footer-link {
+    padding: 6px 11px;
+    font-size: 0.82rem;
+  }
+
+  .footer-copy {
+    font-size: 0.76rem;
+    gap: 7px;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   LIGHT MODE OVERRIDES
+══════════════════════════════════════════════════════════════════════════════ */
+[data-theme="light"] .btn-new-game {
+  background: linear-gradient(160deg, #ffffff 0%, #f0f0f0 100%);
+  border-color: rgba(180, 83, 9, 0.4);
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .btn-new-game:hover {
+  background: var(--grad-amber);
+  border-color: var(--accent-primary);
+  color: #ffffff;
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.12), var(--shadow-glow);
+}
+
+[data-theme="light"] .app-footer {
+  background: rgba(248, 248, 248, 0.99);
+  border-top-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .footer-copy {
+  border-top-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .footer-link {
+  background: linear-gradient(160deg, #ffffff 0%, #f0f0f0 100%);
+  border-color: rgba(0, 0, 0, 0.16);
+  color: #6b5b3e;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .footer-link:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background: rgba(180, 83, 9, 0.05);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1), 0 0 12px rgba(180, 83, 9, 0.12);
+}
+
+[data-theme="light"] .footer-label::before {
+  box-shadow: 0 0 8px rgba(180, 83, 9, 0.4);
 }

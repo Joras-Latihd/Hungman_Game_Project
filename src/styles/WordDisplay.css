@@ -1,12 +1,24 @@
 /* ── Word display section ───────────────────────────────────────────────────── */
 .word-display-section {
-  padding: 24px 20px 18px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
+  padding: 26px 20px 20px;
+  background: rgba(10, 8, 2, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-sharp);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
   text-align: center;
-  transition: background var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.word-display-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(245, 158, 11, 0.7) 50%, transparent 100%);
+  pointer-events: none;
 }
 
 /* ── Slots row ──────────────────────────────────────────────────────────────── */
@@ -16,10 +28,11 @@
   justify-content: center;
   align-items: flex-end;
   gap: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 1;
 }
 
-/* ── Space between words ────────────────────────────────────────────────────── */
 .letter-spacer {
   width: 18px;
 }
@@ -35,15 +48,15 @@
 
 /* ── The letter character ───────────────────────────────────────────────────── */
 .letter-char {
-  font-family: 'DM Mono', monospace;
-  font-size: 1.85rem;
-  font-weight: 500;
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
   color: transparent;
-  min-height: 2.2rem;
+  min-height: 2.3rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   line-height: 1;
   user-select: none;
   transition: color 0.15s ease;
@@ -51,19 +64,20 @@
 
 .letter-char.revealed {
   color: var(--accent-primary);
-  animation: letter-reveal 0.32s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-shadow: 0 0 18px rgba(245, 158, 11, 0.65);
+  animation: letter-reveal 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @keyframes letter-reveal {
   from {
     opacity: 0;
-    transform: translateY(-10px) scale(0.7);
-    color: var(--accent-win);
+    transform: translateY(-14px) scale(0.6);
+    text-shadow: 0 0 30px rgba(245, 158, 11, 1);
   }
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
-    color: var(--accent-primary);
+    text-shadow: 0 0 18px rgba(245, 158, 11, 0.65);
   }
 }
 
@@ -71,15 +85,18 @@
 .letter-underline {
   display: block;
   width: 100%;
-  height: 3px;
-  background: var(--accent-primary);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.6), transparent);
   border-radius: 2px;
-  opacity: 0.55;
-  transition: opacity var(--transition);
+  opacity: 0.6;
+  transition: all var(--transition);
 }
 
-.letter-slot:hover .letter-underline {
-  opacity: 0.85;
+.letter-char.revealed ~ .letter-underline,
+.letter-slot:has(.revealed) .letter-underline {
+  background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+  opacity: 1;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.45);
 }
 
 /* ── Attempts info ──────────────────────────────────────────────────────────── */
@@ -91,18 +108,23 @@
   gap: 8px;
   font-size: 0.8rem;
   color: var(--text-muted);
+  position: relative;
+  z-index: 1;
 }
 
 .attempts-label {
-  font-size: 0.75rem;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.12em;
 }
 
 .attempts-count {
-  color: var(--text-primary);
-  font-weight: 500;
-  font-size: 0.9rem;
+  color: var(--accent-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
 }
 
 .attempts-sep,
@@ -121,29 +143,52 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-elevated);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  background: rgba(30, 24, 8, 0.8);
   transition: all var(--transition);
 }
 
 .pip.pip-used {
   background: var(--accent-loss);
   border-color: var(--accent-loss);
-  box-shadow: 0 0 6px rgba(255, 77, 109, 0.4);
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.55);
 }
 
 /* ── Responsive ─────────────────────────────────────────────────────────────── */
 @media (max-width: 480px) {
-  .letter-char {
-    font-size: 1.45rem;
-    min-height: 1.8rem;
-  }
+  .letter-char { font-size: 1.55rem; min-height: 1.9rem; }
+  .letter-slot { min-width: 26px; }
+  .word-slots { gap: 6px; }
+}
 
-  .letter-slot {
-    min-width: 26px;
-  }
+/* ── Light mode ─────────────────────────────────────────────────────────────── */
+[data-theme="light"] .word-display {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(0,0,0,0.14);
+}
 
-  .word-slots {
-    gap: 6px;
-  }
+[data-theme="light"] .word-display-section {
+  background: rgba(255,255,255,0.98);
+  border-color: rgba(0,0,0,0.14);
+  box-shadow: var(--shadow-card);
+}
+[data-theme="light"] .word-display-section::before {
+  background: linear-gradient(90deg, transparent 0%, rgba(180,83,9,0.5) 50%, transparent 100%);
+}
+[data-theme="light"] .letter-char.revealed {
+  color: var(--accent-primary);
+  text-shadow: none;
+}
+[data-theme="light"] .letter-underline {
+  background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+}
+[data-theme="light"] .attempts-count {
+  text-shadow: none;
+}
+[data-theme="light"] .pip {
+  border-color: rgba(0,0,0,0.18);
+  background: #e6e6e6;
+}
+[data-theme="light"] .pip.pip-used {
+  box-shadow: 0 0 8px rgba(220,38,38,0.3);
 }

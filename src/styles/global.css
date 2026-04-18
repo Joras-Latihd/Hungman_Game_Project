@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
 @import './themes.css';
 
 /* ── Reset ─────────────────────────────────────────────────────────────────── */
@@ -16,13 +16,24 @@ html {
 }
 
 body {
-  font-family: 'DM Mono', monospace;
+  /* Barlow Condensed: strong, condensed, very readable body font */
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 500;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color var(--transition), color var(--transition);
+  background-image:
+    var(--grad-glow-bg),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(245, 158, 11, 0.015) 3px,
+      rgba(245, 158, 11, 0.015) 4px
+    );
 }
 
 #root {
@@ -31,36 +42,66 @@ body {
   flex-direction: column;
 }
 
-/* ── Typography helpers ─────────────────────────────────────────────────────── */
+/* ── Typography — Bebas Neue for all headings/display ──────────────────────── */
 h1, h2, h3, h4 {
-  font-family: 'Syne', sans-serif;
-  line-height: 1.2;
+  font-family: 'Bebas Neue', sans-serif;
+  line-height: 1.1;
+  letter-spacing: 0.06em;
 }
 
-/* ── Shared card base ───────────────────────────────────────────────────────── */
+/* ── Shared glass card base ─────────────────────────────────────────────────── */
 .card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-sharp);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
   transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(245, 158, 11, 0.7) 50%, transparent 100%);
+  pointer-events: none;
 }
 
 /* ── Panel heading ──────────────────────────────────────────────────────────── */
 .panel-heading {
-  font-family: 'Syne', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
+  /* Bebas Neue for panel titles — maximum impact */
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.16em;
+  color: var(--text-primary);
   margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.panel-heading::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 14px;
+  background: var(--accent-primary);
+  border-radius: 2px;
+  box-shadow: 0 0 10px var(--accent-primary);
+  flex-shrink: 0;
 }
 
 /* ── Shared button styles ───────────────────────────────────────────────────── */
 button {
   cursor: pointer;
-  font-family: 'DM Mono', monospace;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
   border: none;
   outline: none;
 }
@@ -71,19 +112,40 @@ button:focus-visible {
 }
 
 /* ── Scrollbar ──────────────────────────────────────────────────────────────── */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-primary);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--border-subtle);
-  border-radius: 3px;
-}
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border-subtle); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(245, 158, 11, 0.4); }
 
 /* ── Selection ──────────────────────────────────────────────────────────────── */
 ::selection {
-  background: rgba(0, 229, 255, 0.25);
+  background: rgba(245, 158, 11, 0.3);
   color: var(--text-primary);
 }
+
+/* ── Light mode overrides ───────────────────────────────────────────────────── */
+[data-theme="light"] body {
+  background-image: var(--grad-glow-bg);
+}
+
+[data-theme="light"] .card {
+  background: var(--bg-glass);
+  border-color: var(--border-sharp);
+  box-shadow: var(--shadow-card);
+}
+
+[data-theme="light"] .card::before {
+  background: linear-gradient(90deg, transparent 0%, rgba(180, 83, 9, 0.5) 50%, transparent 100%);
+}
+
+[data-theme="light"] .panel-heading {
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .panel-heading::before {
+  background: var(--accent-primary);
+  box-shadow: 0 0 8px rgba(180, 83, 9, 0.4);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-track { background: #f0f0f0; }
+[data-theme="light"] ::-webkit-scrollbar-thumb { background: #d4c9b0; }

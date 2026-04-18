@@ -1,50 +1,98 @@
-/* ── Dark theme (default) ──────────────────────────────────────────────────── */
+/* ── Dark theme (default) — Amber Arcade ───────────────────────────────────── */
 :root,
 [data-theme="dark"] {
-  --bg-primary:     #0d0f14;
-  --bg-surface:     #161a23;
-  --bg-elevated:    #1e2433;
-  --bg-elevated2:   #252d3d;
+  --bg-primary:     #050400;
+  --bg-surface:     #0c0a02;
+  --bg-elevated:    #141008;
+  --bg-elevated2:   #1c160a;
+  --bg-glass:       rgba(14, 11, 3, 0.88);
 
-  --accent-primary: #00e5ff;
-  --accent-win:     #00ffb2;
-  --accent-loss:    #ff4d6d;
-  --accent-warn:    #ffd166;
+  --accent-primary: #f59e0b;
+  --accent-secondary: #fbbf24;
+  --accent-bright:  #fde68a;
+  --accent-win:     #10b981;
+  --accent-loss:    #ef4444;
+  --accent-warn:    #f97316;
+  --accent-ember:   #ea6c10;
 
-  --text-primary:   #f0f4ff;
-  --text-muted:     #6b7a99;
-  --text-subtle:    #3e4a6a;
+  --text-primary:   #fef9e7;
+  --text-muted:     #a8936a;
+  --text-subtle:    #4a3d20;
 
-  --border-subtle:  #2a3148;
-  --border-accent:  rgba(0, 229, 255, 0.25);
+  --border-subtle:  #2e2208;
+  --border-accent:  rgba(245, 158, 11, 0.5);
+  --border-glass:   rgba(245, 158, 11, 0.18);
+  --border-sharp:   rgba(245, 158, 11, 0.35);
 
-  --shadow-glow:    0 0 24px rgba(0, 229, 255, 0.12);
-  --shadow-card:    0 4px 24px rgba(0, 0, 0, 0.35);
-  --shadow-modal:   0 8px 48px rgba(0, 0, 0, 0.6);
+  --shadow-glow:    0 0 24px rgba(245, 158, 11, 0.25);
+  --shadow-glow-lg: 0 0 60px rgba(245, 158, 11, 0.15);
+  --shadow-card:    0 4px 32px rgba(0, 0, 0, 0.7), 0 1px 0 rgba(245, 158, 11, 0.12) inset;
+  --shadow-modal:   0 8px 64px rgba(0, 0, 0, 0.85), 0 0 80px rgba(245, 158, 11, 0.1);
+  --shadow-key:     0 4px 10px rgba(0, 0, 0, 0.55), 0 1px 0 rgba(245, 158, 11, 0.18) inset;
+  --shadow-key-hover: 0 6px 20px rgba(245, 158, 11, 0.35), 0 0 0 1px rgba(245, 158, 11, 0.55);
 
   --radius-card:    16px;
   --radius-btn:     10px;
-  --radius-key:     8px;
+  --radius-key:     9px;
   --radius-badge:   20px;
 
-  --transition:     0.3s ease;
+  --transition:     0.22s ease;
+
+  --grad-amber:     linear-gradient(135deg, #f59e0b 0%, #ea6c10 100%);
+  --grad-surface:   linear-gradient(160deg, #141008 0%, #0c0a02 100%);
+  --grad-win:       linear-gradient(135deg, #10b981 0%, #059669 100%);
+  --grad-loss:      linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  --grad-glow-bg:   radial-gradient(ellipse at 50% -10%, rgba(245, 158, 11, 0.1) 0%, transparent 60%);
 }
 
-/* ── Light theme override ──────────────────────────────────────────────────── */
+/* ── Light theme — Clean White with Amber Accents ──────────────────────────── */
 [data-theme="light"] {
-  --bg-primary:     #f4f6fb;
-  --bg-surface:     #ffffff;
-  --bg-elevated:    #edf0f7;
-  --bg-elevated2:   #e2e7f2;
+  /* True white backgrounds */
+  --bg-primary:     #ffffff;
+  --bg-surface:     #f9f9f9;
+  --bg-elevated:    #f0f0f0;
+  --bg-elevated2:   #e6e6e6;
+  --bg-glass:       rgba(255, 255, 255, 0.97);
 
-  --text-primary:   #0d0f14;
-  --text-muted:     #6b7380;
-  --text-subtle:    #b0b8cc;
+  /* Darker amber for contrast on white */
+  --accent-primary: #d97706;
+  --accent-secondary: #b45309;
+  --accent-bright:  #f59e0b;
+  --accent-win:     #059669;
+  --accent-loss:    #dc2626;
+  --accent-warn:    #ea580c;
+  --accent-ember:   #c2410c;
 
-  --border-subtle:  #c8d0e0;
-  --border-accent:  rgba(0, 150, 200, 0.3);
+  /* Near-black text — maximum contrast on white */
+  --text-primary:   #111111;
+  --text-muted:     #6b5b3e;
+  --text-subtle:    #a89070;
 
-  --shadow-glow:    0 0 24px rgba(0, 150, 200, 0.08);
-  --shadow-card:    0 2px 16px rgba(0, 0, 0, 0.08);
-  --shadow-modal:   0 8px 48px rgba(0, 0, 0, 0.2);
+  /* Visible dark borders on white */
+  --border-subtle:  #d4c9b0;
+  --border-accent:  rgba(180, 83, 9, 0.6);
+  --border-glass:   rgba(180, 83, 9, 0.25);
+  --border-sharp:   rgba(0, 0, 0, 0.18);
+
+  /* Crisp shadows on white — depth reads via darkness not glow */
+  --shadow-glow:    0 0 20px rgba(180, 83, 9, 0.18);
+  --shadow-glow-lg: 0 0 50px rgba(180, 83, 9, 0.1);
+  --shadow-card:    0 2px 0 rgba(0,0,0,0.06), 0 4px 16px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0,0,0,0.07);
+  --shadow-modal:   0 8px 40px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0,0,0,0.06);
+  /* 3D key bottom shadow — dark bottom edge makes keys pop on white */
+  --shadow-key:     0 4px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255,255,255,1) inset, 0 0 0 1px rgba(0,0,0,0.1);
+  --shadow-key-hover: 0 6px 0 rgba(0,0,0,0.15), 0 0 16px rgba(180, 83, 9, 0.2), 0 0 0 1px rgba(180, 83, 9, 0.5);
+
+  --radius-card:    16px;
+  --radius-btn:     10px;
+  --radius-key:     9px;
+  --radius-badge:   20px;
+
+  --transition:     0.22s ease;
+
+  --grad-amber:     linear-gradient(135deg, #d97706 0%, #c2410c 100%);
+  --grad-surface:   linear-gradient(160deg, #f0f0f0 0%, #ffffff 100%);
+  --grad-win:       linear-gradient(135deg, #059669 0%, #047857 100%);
+  --grad-loss:      linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  --grad-glow-bg:   radial-gradient(ellipse at 50% -10%, rgba(180, 83, 9, 0.05) 0%, transparent 60%);
 }
