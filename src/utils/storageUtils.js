@@ -20,10 +20,9 @@ export function readStorage() {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return structuredClone(defaultData);
     const parsed = JSON.parse(raw);
-    // merge to ensure all keys exist if schema was updated
     return {
-      stats: { ...defaultData.stats, ...parsed.stats },
-      history: Array.isArray(parsed.history) ? parsed.history : [],
+      stats:       { ...defaultData.stats,       ...parsed.stats },
+      history:     Array.isArray(parsed.history) ? parsed.history : [],
       preferences: { ...defaultData.preferences, ...parsed.preferences },
     };
   } catch (_) {
@@ -34,9 +33,18 @@ export function readStorage() {
 export function writeStorage(data) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  } catch (_) {
-    // storage may be unavailable (private mode, quota exceeded)
-  }
+  } catch (_) {}
+}
+
+export function resetGameState() {
+  try {
+    const current = readStorage();
+    writeStorage({
+      stats:       current.stats,
+      history:     current.history,
+      preferences: current.preferences,
+    });
+  } catch (_) {}
 }
 
 export function recordWin(data, wordObj, difficulty, attemptsUsed) {

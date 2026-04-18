@@ -52,9 +52,8 @@
 }
 
 .logo-text {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.4rem;
-  font-weight: 800;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
   letter-spacing: 0.1em;
   background: linear-gradient(90deg, #fde68a 0%, #f59e0b 50%, #ea6c10 100%);
   -webkit-background-clip: text;
@@ -77,7 +76,6 @@
   gap: 2px;
   padding: 8px 18px;
   background: var(--bg-elevated);
-  /* Sharp visible amber border */
   border: 1px solid var(--border-sharp);
   border-radius: 10px;
   transition: all var(--transition);
@@ -89,23 +87,65 @@
 }
 
 .mini-value {
-  font-family: 'DM Mono', monospace;
+  font-family: 'Barlow Condensed', sans-serif;
   font-size: 1.15rem;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1;
 }
 
-/* Bold glowing stat values */
-.mini-value.wins   { color: var(--accent-win);  text-shadow: 0 0 12px rgba(16, 185, 129, 0.6); }
-.mini-value.losses { color: var(--accent-loss); text-shadow: 0 0 12px rgba(239, 68, 68, 0.6); }
+.mini-value.wins   { color: var(--accent-win);     text-shadow: 0 0 12px rgba(16, 185, 129, 0.6); }
+.mini-value.losses { color: var(--accent-loss);    text-shadow: 0 0 12px rgba(239, 68, 68, 0.6); }
 .mini-value.streak { color: var(--accent-primary); text-shadow: 0 0 12px rgba(245, 158, 11, 0.7); }
 
 .mini-label {
-  font-size: 0.6rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.62rem;
   color: var(--text-muted);
   text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* ── Right controls group ───────────────────────────────────────────────────── */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ── Logout button ──────────────────────────────────────────────────────────── */
+.btn-logout {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  background: linear-gradient(160deg, #1e1808 0%, #141008 100%);
+  color: #a8936a;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.88rem;
   letter-spacing: 0.1em;
-  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition);
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.45);
+}
+
+.btn-logout:hover {
+  border-color: var(--accent-loss);
+  color: var(--accent-loss);
+  background: rgba(239, 68, 68, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.35), 0 0 14px rgba(239, 68, 68, 0.15);
+}
+
+.btn-logout:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.btn-logout svg {
+  flex-shrink: 0;
 }
 
 /* ── Responsive ─────────────────────────────────────────────────────────────── */
@@ -113,8 +153,10 @@
   .header { padding: 12px 14px; }
   .header-center { gap: 4px; }
   .mini-stat { padding: 6px 10px; }
-  .logo-text { font-size: 1.1rem; }
+  .logo-text { font-size: 1.2rem; }
   .mini-value { font-size: 0.95rem; }
+  .btn-logout-label { display: none; } /* icon only on small screens */
+  .btn-logout { padding: 8px 10px; }
 }
 
 @media (max-width: 400px) {
@@ -125,7 +167,7 @@
 [data-theme="light"] .header {
   background: rgba(255, 255, 255, 0.97);
   border-bottom-color: rgba(0, 0, 0, 0.12);
-  box-shadow: 0 1px 0 rgba(0,0,0,0.08), 0 4px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08), 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 [data-theme="light"] .header::before {
@@ -134,9 +176,27 @@
 
 [data-theme="light"] .mini-stat {
   background: #f0f0f0;
-  border-color: rgba(0,0,0,0.14);
+  border-color: rgba(0, 0, 0, 0.14);
 }
 
 [data-theme="light"] .mini-stat:hover {
   border-color: var(--accent-primary);
+}
+
+[data-theme="light"] .mini-value.wins   { text-shadow: none; }
+[data-theme="light"] .mini-value.losses { text-shadow: none; }
+[data-theme="light"] .mini-value.streak { text-shadow: none; }
+
+[data-theme="light"] .btn-logout {
+  background: linear-gradient(160deg, #ffffff 0%, #f0f0f0 100%);
+  border-color: rgba(220, 38, 38, 0.25);
+  color: #6b5b3e;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .btn-logout:hover {
+  border-color: var(--accent-loss);
+  color: var(--accent-loss);
+  background: rgba(220, 38, 38, 0.05);
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.1), 0 0 12px rgba(220, 38, 38, 0.12);
 }

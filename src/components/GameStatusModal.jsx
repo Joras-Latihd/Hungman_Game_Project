@@ -79,7 +79,7 @@ export default function GameStatusModal({ gameStatus, word, stats, newGame, setD
 
         {!won && (
           <p className="modal-encouragement">
-            Don't give up — try again!
+            Don't give up - try again!
           </p>
         )}
 
