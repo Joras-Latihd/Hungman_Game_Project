@@ -86,13 +86,27 @@ export default function Game({ onLogout }) {
 
       <footer className="app-footer">
         <div className="footer-inner">
+
+          {/* ── Developer bio with photo ──────────────────────────────────── */}
           <div className="footer-dev">
             <span className="footer-label">About the Developer</span>
-            <p className="footer-bio">
-              BCSIT student &amp; Frontend Developer based in Kathmandu, Nepal.<br></br>
-              Building practical web apps with JavaScript, React, Next.js &amp; PHP.
-            </p>
+            <div className="footer-dev-body">
+              {/* Circular 3D photo */}
+              <div className="footer-avatar-wrap">
+                <img
+                  src="/Developer.png"
+                  alt="Saroj Dhital"
+                  className="footer-avatar"
+                  draggable="false"
+                />
+              </div>
+              <p className="footer-bio">
+                BCSIT student &amp; Frontend Developer based in Kathmandu, Nepal.<br></br>
+                Building practical web apps with JavaScript, React, Next.js &amp; PHP.
+              </p>
+            </div>
           </div>
+
           <div className="footer-links">
             <a href="https://saroj-portfolio-website.vercel.app/" target="_blank" rel="noopener noreferrer" className="footer-link">
               <span className="footer-link-icon">🌐</span>Portfolio
@@ -115,15 +129,16 @@ export default function Game({ onLogout }) {
               <span className="footer-link-icon">✉</span>Email
             </a>
           </div>
+
           <div className="footer-copy">
             <span>© {new Date().getFullYear()} Saroj Dhital</span>
             <span className="footer-dot">·</span>
             <span>Hangman Game Project</span>
           </div>
+
         </div>
       </footer>
 
-      {/* Only show modal after player has made at least one guess */}
       {gameStarted && gameStatus !== "playing" && (
         <GameStatusModal
           gameStatus={gameStatus}

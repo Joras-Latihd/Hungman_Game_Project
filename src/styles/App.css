@@ -286,3 +286,73 @@
 [data-theme="light"] .footer-label::before {
   box-shadow: 0 0 8px rgba(180, 83, 9, 0.4);
 }
+
+/* ── Footer developer photo ─────────────────────────────────────────────────── */
+.footer-dev-body {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.footer-avatar-wrap {
+  flex-shrink: 0;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  /* Amber 3D ring effect */
+  background: linear-gradient(135deg, #f59e0b, #ea6c10);
+  padding: 2.5px;
+  box-shadow:
+    0 4px 0 rgba(0, 0, 0, 0.45),
+    0 0 18px rgba(245, 158, 11, 0.35),
+    0 0 0 1px rgba(245, 158, 11, 0.15);
+  transition: box-shadow 0.22s ease, transform 0.22s ease;
+}
+
+.footer-avatar-wrap:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 0 rgba(0, 0, 0, 0.4),
+    0 0 28px rgba(245, 158, 11, 0.5),
+    0 0 0 1px rgba(245, 158, 11, 0.3);
+}
+
+.footer-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  /* Inner dark border to separate photo from amber ring */
+  outline: 2px solid rgba(0, 0, 0, 0.3);
+  outline-offset: -1px;
+}
+
+/* ── Light mode avatar ───────────────────────────────────────────────────────── */
+[data-theme="light"] .footer-avatar-wrap {
+  background: linear-gradient(135deg, #d97706, #c2410c);
+  box-shadow:
+    0 4px 0 rgba(0, 0, 0, 0.18),
+    0 0 16px rgba(180, 83, 9, 0.25),
+    0 0 0 1px rgba(180, 83, 9, 0.15);
+}
+
+[data-theme="light"] .footer-avatar-wrap:hover {
+  box-shadow:
+    0 6px 0 rgba(0, 0, 0, 0.15),
+    0 0 22px rgba(180, 83, 9, 0.35),
+    0 0 0 1px rgba(180, 83, 9, 0.25);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .footer-avatar-wrap {
+    width: 50px;
+    height: 50px;
+  }
+
+  .footer-dev-body {
+    gap: 10px;
+  }
+}
