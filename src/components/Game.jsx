@@ -89,7 +89,7 @@ export default function Game({ onLogout }) {
           <div className="footer-dev">
             <span className="footer-label">About the Developer</span>
             <p className="footer-bio">
-              BCSIT student &amp; Frontend Developer based in Kathmandu, Nepal.
+              BCSIT student &amp; Frontend Developer based in Kathmandu, Nepal.<br></br>
               Building practical web apps with JavaScript, React, Next.js &amp; PHP.
             </p>
           </div>

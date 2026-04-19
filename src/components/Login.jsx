@@ -41,8 +41,8 @@ export default function Login({ onLogin }) {
 
         <div className="login-header">
           <div className="login-dot" aria-hidden="true" />
-          <h1 className="login-title">HANGMAN</h1>
-          <p className="login-subtitle">Enter your credentials to play</p>
+          <h1 className="login-title">HANGMAN Game</h1>
+          <p className="login-subtitle">Enter the given credentials to play</p>
         </div>
 
         <div className="login-divider" aria-hidden="true">
@@ -54,7 +54,7 @@ export default function Login({ onLogin }) {
         <form className="login-form" onSubmit={handleSubmit} noValidate>
 
           <div className="login-field">
-            <label className="login-label" htmlFor="login-name">Player Name</label>
+            <label className="login-label" htmlFor="login-name">Play Name</label>
             <div className="login-input-wrap">
               <span className="login-input-icon" aria-hidden="true">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -66,7 +66,7 @@ export default function Login({ onLogin }) {
                 id="login-name"
                 className="login-input"
                 type="text"
-                placeholder="Enter player name"
+                placeholder="Enter name"
                 value={name}
                 onChange={e => { setName(e.target.value); setError(""); }}
                 autoComplete="username"
@@ -140,7 +140,7 @@ export default function Login({ onLogin }) {
         </form>
 
         <p className="login-hint">
-          Hint — Name: <strong>SarojDTL</strong> · Password: <strong>TimetoPlay</strong>
+          Hint - Name: <strong>SarojDTL</strong> · Password: <strong>TimetoPlay</strong>
         </p>
       </div>
     </div>
